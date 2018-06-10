@@ -25,7 +25,8 @@
     "build": "webpack -p",
     "deploy": "npm run build && bx app push BeneStudioTask",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "heroku-postbuild": "webpack -p"
   },
   "dependencies": {
     "axios": "^0.18.0",
