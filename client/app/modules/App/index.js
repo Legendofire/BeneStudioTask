@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 // Loading Modules
 import MultiInput from '../../containers/MultiInputContainer';
 
-export default class App extends React.Component {
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(itemsArray) {
+        console.log(itemsArray.slice(0, this.state.items.length - 1)
+            .map(item => item.value));
+    }
+
     render() {
         return (
             <AppWrapper>
-                <MultiInput/>
+                <MultiInput items={[{label:"label1",value:"value1"}]} onChange={this.onChange}/>
             </AppWrapper>
         );
     }

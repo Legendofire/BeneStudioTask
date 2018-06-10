@@ -1,24 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import MultiInput from '../components/MultiInput';
 
 export default class MultiInputContainer extends Component {
     constructor(props) {
         super(props);
+        let itemsWithEmptyItem = this.props.items;
+        itemsWithEmptyItem = itemsWithEmptyItem.map((item) => ({
+            ...item,
+            isFocused: false
+        }));
+        itemsWithEmptyItem.push({
+            label: '',
+            value: '',
+            isFocused: false
+        });
         this.state = {
-            items: [
-                {
-                    label: '',
-                    value: '',
-                    isFocused: false
-                }
-            ]
+            items: itemsWithEmptyItem
         };
         this.focusItem = this.focusItem.bind(this);
         this.updateItem = this.updateItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
-        this.submitMultiInput = this.submitMultiInput.bind(this);
     }
 
     focusItem(focusedItemIndex) {
@@ -74,11 +77,6 @@ export default class MultiInputContainer extends Component {
         });
     }
 
-    submitMultiInput() {
-        console.log(this.state.items.slice(0, this.state.items.length - 1)
-            .map(item => item.value));
-    }
-
     render() {
         return (
             <MultiInput
@@ -88,8 +86,13 @@ export default class MultiInputContainer extends Component {
                 updateItem={this.updateItem}
                 addItem={this.addItem}
                 deleteItem={this.deleteItem}
-                submitMultiInput={this.submitMultiInput}
+                onChange={this.props.onChange}
             />
         );
     }
 }
+
+MultiInputContainer.PropTypes = {
+    items: PropTypes.string,
+    onChange: PropTypes.func
+};

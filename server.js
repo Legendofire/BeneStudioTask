@@ -20,7 +20,7 @@ if (isDev) {
 
     const compiler = webpack(webpackConfig);
     app.use(historyApiFallback({
-        verbose: false
+      verbose: false
     }));
 
     app.use(webpackDevMiddleware(compiler, {

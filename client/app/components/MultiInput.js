@@ -21,7 +21,7 @@ export default class MultiInput extends Component {
                                         (e) => { if (e.charCode === 13) { this.props.addItem(); } } :
                                         null}/>
                                 {
-                                    item.value === '' ?
+                                    item.value === '' && item.label === '' ?
                                         <EmptyButton/> :
                                         <CloseButton onClick={() => { this.props.deleteItem(index); }} />
                                 }
@@ -30,7 +30,7 @@ export default class MultiInput extends Component {
                     }
                 </MultiInputItemsWrapper>
                 <MultiInputFooter>
-                    <Button label={'Save'} onClick={() => { this.props.submitMultiInput(); }}/>
+                    <Button label={'Save'} onClick={() => { this.props.onChange(this.props.items); }}/>
                     <Button label={'Cancel'} />
                 </MultiInputFooter>
             </MultiInputWrapper>
@@ -53,10 +53,10 @@ const MultiInputWrapper = styled.div`
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 3fr;
-    grid-template-rows: auto 100px;
+    grid-template-rows: auto 15%;
     @media (max-width: 1024px){
       grid-template-columns: 1fr;
-      grid-template-rows: 100px auto 100px;
+      grid-template-rows: 100px auto 15%;
     }
 `;
 
