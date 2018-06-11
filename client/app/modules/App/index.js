@@ -10,7 +10,7 @@ export default class App extends Component {
     }
 
     onChange(itemsArray) {
-        console.log(itemsArray.slice(0, this.state.items.length - 1)
+        console.log(itemsArray.slice(0, itemsArray.length - 1)
             .map(item => item.value));
     }
 
