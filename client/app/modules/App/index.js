@@ -17,7 +17,14 @@ export default class App extends Component {
     render() {
         return (
             <AppWrapper>
-                <MultiInput items={[{label:"label1",value:"value1"}]} onChange={this.onChange}/>
+                <MultiInput
+                    items={[
+                        {
+                            label: "label1",
+                            value: "value1"
+                        }
+                    ]}
+                    onChange={this.onChange}/>
             </AppWrapper>
         );
     }
